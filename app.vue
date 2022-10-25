@@ -1,14 +1,13 @@
-<script setup>
+<script setup lang="ts">
+
+  
 
 </script>
 
 <template>
-<AppContainer>
-  <Header />
-  <div>
+  <NuxtLayout>
     <NuxtPage></NuxtPage>
-  </div>
-</AppContainer>
+  </NuxtLayout>
 </template>
 
 
