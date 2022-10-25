@@ -1,15 +1,17 @@
-<script setup>
+<script setup lang="ts">
+    import {CustomForm} from '~/types/form';
+
     const user = useSupabaseUser();
     const supabase = useSupabaseClient();
 
-    const signUpForm = reactive({
+    const signUpForm = reactive<CustomForm>({
         email: '',
         password: '',
     })
 
     watchEffect(() => {
         if(user.value) {
-            navigateTo('/user')
+            navigateTo('/')
         } 
     });
 
@@ -47,12 +49,13 @@
         placeholder="Your password"
         v-model="signUpForm.password"
         />
-        <input
-        class="bg-background rounded-md text-white p-1 cursor-pointer hover:text-gray-300"
-        type="submit"
-        :value="'Sign Up'"
-        />
     </form>
+    <button 
+    @click="signUp"
+    type="submit"
+    class="w-200 bg-background rounded-md text-white p-1 cursor-pointer hover:text-gray-300">
+    Sign Up
+    </button>
     <NuxtLink to="/login" class="hover:text-gray-300">
         Already have an account?
     </NuxtLink>
