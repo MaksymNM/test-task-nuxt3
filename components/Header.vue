@@ -4,7 +4,7 @@
 
     const signout = async () => {
         await supabase.auth.signOut();
-        navigateTo('/');
+        navigateTo('/register');
     };
     console.log(user.value)
 

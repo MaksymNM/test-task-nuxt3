@@ -2,8 +2,10 @@
     const user = useSupabaseUser();
     const supabase = useSupabaseClient();
 
-    const email = ref('');
-    const password = ref('');
+    const signUpForm = reactive({
+        email: '',
+        password: '',
+    })
 
     watchEffect(() => {
         if(user.value) {
@@ -11,13 +13,11 @@
         } 
     });
 
-    
-
     const signUp = async () => {
         try {
             const {data, error} = await supabase.auth.signUp({
-                email: email.value,
-                password: password.value,
+                email: signUpForm.email,
+                password: signUpForm.password,
             })
             if(error) {
                 throw error
@@ -39,13 +39,13 @@
         class="border-2 border-background rounded-md p-1 "
         type="email"
         placeholder="Your email"
-        v-model="email"
+        v-model="signUpForm.email"
         />
         <input
         class="border-2 border-background rounded-md p-1"
         type="password"
         placeholder="Your password"
-        v-model="password"
+        v-model="signUpForm.password"
         />
         <input
         class="bg-background rounded-md text-white p-1 cursor-pointer hover:text-gray-300"

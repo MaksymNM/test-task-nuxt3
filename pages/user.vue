@@ -4,7 +4,7 @@
     })
 
     const user = useSupabaseUser();
-    const {email} = user.value
+    const email = user.value.email;
 
 </script>
 
