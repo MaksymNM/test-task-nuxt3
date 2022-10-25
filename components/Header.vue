@@ -1,12 +1,18 @@
-<script setup>
+<script setup lang="ts">
     const supabase = useSupabaseClient();
     const user = useSupabaseUser();
 
+    supabase.auth.onAuthStateChange((event, session) => {
+        if(session === null) {
+            navigateTo('/register');
+        }
+    })
+
     const signout = async () => {
         await supabase.auth.signOut();
-        navigateTo('/register');
     };
     console.log(user.value)
+
 
 </script>
 

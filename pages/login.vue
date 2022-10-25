@@ -9,11 +9,11 @@
         password: '',
     })
 
-    watchEffect(() => {
-        if(user.value) {
+    supabase.auth.onAuthStateChange((event, session) => {
+        if (session && user.value) {
             navigateTo('/')
-        } 
-    });
+        }
+    })
 
     const signIn = async () => {
         try {
